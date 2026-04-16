@@ -1,0 +1,35 @@
+:root {
+    --bg-dark: #0a0a0a;
+    --container-black: #121212;
+    --gold-primary: #d4af37;
+    --gold-light: #f1d592;
+    --gold-dark: #996515;
+    --text-white: #ffffff;
+    --text-muted: #b5b5b5;
+}
+
+body { 
+    background: radial-gradient(circle at top, #1a1a1a 0%, var(--bg-dark) 100%);
+    background-attachment: fixed;
+    color: var(--text-white); 
+    font-family: 'Inter', sans-serif; 
+    margin: 0; padding: 0;
+    display: flex; justify-content: center;
+}
+
+/* ... Paste the rest of your CSS here ... */
+
+.project-tag {
+    font-size: 10px; 
+    color: var(--gold-primary); 
+    font-weight: 800; 
+    text-transform: uppercase;
+}
+
+.footer-socials {
+    margin-top: 60px; 
+    border-top: 1px solid rgba(212,175,55,0.1); 
+    padding-top: 20px; 
+    display: flex; 
+    gap: 20px;
+}

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mika Gracia | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0a0a;
+            --container-black: #121212;
+            --gold-primary: #d4af37;
+            --gold-light: #f1d592;
+            --gold-dark: #996515;
+            --text-white: #ffffff;
+            --text-muted: #b5b5b5;
+        }
+
+        body { 
+            background: radial-gradient(circle at top, #1a1a1a 0%, var(--bg-dark) 100%);
+            background-attachment: fixed;
+            color: var(--text-white); 
+            font-family: 'Inter', sans-serif; 
+            margin: 0; padding: 0;
+            display: flex; justify-content: center;
+        }
+
+        .container {
+            width: 100%; max-width: 900px;
+            background: linear-gradient(145deg, #121212 0%, #000000 100%);
+            min-height: 100vh; padding: 60px;
+            border-left: 2px solid var(--gold-primary);
+            border-right: 2px solid var(--gold-primary);
+            box-shadow: 0 0 60px rgba(212, 175, 55, 0.15), 30px 0 50px rgba(0,0,0,0.8), -30px 0 50px rgba(0,0,0,0.8);
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        .header-section { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .hero-text-area { flex: 1; }
+        .hero-label { color: var(--gold-primary); font-weight: 600; font-size: 18px; margin: 0; letter-spacing: 3px; }
+        .hero-name { font-size: 55px; font-weight: 800; margin: 5px 0; line-height: 1; color: #fff; }
+        .accent-line { width: 80px; height: 4px; background: var(--gold-primary); margin-top: 15px; border-radius: 2px; }
+
+        .image-box {
+            background: linear-gradient(45deg, var(--gold-dark), var(--gold-light));
+            width: 300px; height: 300px; border-radius: 35px; padding: 3px;
+            overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+        .profile-img { width: 100%; height: 100%; object-fit: cover; border-radius: 32px; background: #1a1a1a; }
+
+        h2 { font-size: 20px; color: var(--gold-light); margin: 10px 0 25px 0; font-weight: 600; opacity: 0.8; }
+        
+        .contact-area { margin-bottom: 30px; color: var(--text-muted); font-size: 14px; }
+        .contact-header { color: var(--gold-primary); font-weight: 800; font-size: 12px; letter-spacing: 1px; margin-bottom: 10px; text-transform: uppercase; }
+        .contact-area div { margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+
+        .section-title { 
+            font-size: 26px; font-weight: 700; margin: 50px 0 20px 0; 
+            border-left: 4px solid var(--gold-primary); padding-left: 15px; color: var(--gold-light); 
+        }
+
+        .project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .project-card {
+            background: rgba(255, 255, 255, 0.02); padding: 25px; border-radius: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.05); display: flex; flex-direction: column;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .project-card:hover {
+            transform: scale(1.03) translateY(-10px);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--gold-primary);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .slider-container {
+            position: relative; width: 100%; height: 200px;
+            margin-bottom: 20px; border-radius: 12px;
+            overflow: hidden; border: 1px solid rgba(212, 175, 55, 0.2); background: #000;
+        }
+        .slide {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: contain; opacity: 0; transition: opacity 0.6s ease-in-out;
+        }
+        .slide.active { opacity: 1; }
+        
+        .slider-nav {
+            position: absolute; top: 50%; width: 100%; display: flex;
+            justify-content: space-between; transform: translateY(-50%);
+            padding: 0 5px; pointer-events: none; z-index: 10;
+        }
+        .slider-nav button {
+            background: rgba(0, 0, 0, 0.7); color: var(--gold-primary);
+            border: 1px solid var(--gold-primary); border-radius: 50%;
+            width: 28px; height: 28px; cursor: pointer; pointer-events: auto; font-weight: bold;
+        }
+
+        .project-features { margin-top: 15px; font-size: 12px; color: var(--gold-light); line-height: 1.6; }
+
+        .btn-action {
+            display: inline-block; background: linear-gradient(45deg, var(--gold-dark), var(--gold-primary));
+            color: #000 !important; padding: 14px 35px; border-radius: 8px; text-decoration: none;
+            font-weight: 800; font-size: 13px; text-transform: uppercase; margin: 10px 0;
+            transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        .btn-action:hover { 
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        .tech-skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 20px; }
+        .tech-category { 
+            background: rgba(212, 175, 55, 0.03); padding: 15px; border-radius: 12px; 
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        .tech-category h5 { color: var(--gold-primary); font-size: 12px; margin: 0 0 10px 0; text-transform: uppercase; }
+        .tech-list { font-size: 12px; color: var(--text-muted); line-height: 1.8; }
+
+        .social-link { color: var(--text-muted); text-decoration: none; font-size: 13px; margin-right: 20px; }
+        .social-link:hover { color: var(--gold-primary); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-section">
+            <div class="hero-text-area">
+                <p class="hero-label">HELLO, I'M</p>
+                <h1 class="hero-name">MIKA</h1>
+                <h1 class="hero-name" style="color:var(--gold-light)">GRACIA</h1>
+                <div class="accent-line"></div>
+            </div>
+            <div class="image-box">
+                <img src="profile.jpg" class="profile-img" alt="Mika Gracia">
+            </div>
+        </div>
+
+        <div style="margin-bottom: 40px;">
+            <h2 id="lblRole">BSIT Student & Systems Designer</h2>
+            <div class="contact-area">
+                <div class="contact-header">CONTACT INFORMATION:</div>
+                <div><span style="color:var(--gold-primary)">📧</span> <span id="lblEmail">mikagracia509@gmail.com</span></div>
+                <div><span style="color:var(--gold-primary)">📍</span> <span id="lblAddress">Cebu City, Philippines</span></div>
+            </div>
+            <a href="https://www.linkedin.com/in/mika-gracia-bb75ba403" id="btnViewWork" class="btn-action" target="_blank">VIEW MY LINKEDIN ACCOUNT</a>
+        </div>
+
+        <div class="section-title">About Me</div>
+        <p id="lblBio" style="color: var(--text-muted); line-height: 1.8; font-size: 15px; margin-bottom: 30px;">
+            </p>
+
+        <div class="section-title">Featured Projects</div>
+        <div class="project-grid">
+            
+            <div class="project-card">
+                <span style="font-size:10px; color:var(--gold-primary); font-weight:800; text-transform:uppercase;">Desktop App</span>
+                <h4 style="margin: 10px 0;">Dental Care Appointment</h4>
+                <div class="slider-container">
+                    <div class="slider-nav">
+                        <button onclick="prevDental()">&#10094;</button>
+                        <button onclick="nextDental()">&#10095;</button>
+                    </div>
+                    <img src="first.png" class="slide dental-slide active" />
+                    <img src="staff.png" class="slide dental-slide" />
+                    <img src="doctor.png" class="slide dental-slide" />
+                    <img src="select.png" class="slide dental-slide" />
+                </div>
+                <p style="font-size:13px; color:var(--text-muted);">A multi-user management platform with dedicated portals for medical staff and doctors.</p>
+                <div class="project-features">
+                    ✧ Real-time Appointment Scheduling<br />
+                    ✧ Medical Record History & Tracking<br />
+                    ✧ Secure Multi-Role Authentication
+                </div>
+            </div>
+
+            <div class="project-card">
+                <span style="font-size:10px; color:var(--gold-primary); font-weight:800; text-transform:uppercase;">Web Platform</span>
+                <h4 style="margin: 10px 0;">Constructura</h4>
+                <div class="slider-container">
+                    <div class="slider-nav">
+                        <button onclick="prevConstruct()">&#10094;</button>
+                        <button onclick="nextConstruct()">&#10095;</button>
+                    </div>
+                    <img src="red1.png" class="slide construct-slide active" />
+                    <img src="red2.png" class="slide construct-slide" />
+                    <img src="red3.png" class="slide construct-slide" />
+                </div>
+                <p style="font-size:13px; color:var(--text-muted);">Advanced construction management dashboard designed for Engineers and Safety Admins.</p>
+                <div class="project-features">
+                    ✧ High/Medium Risk Safety Alerts<br />
+                    ✧ Worker Status & Activity Tracking<br />
+                    ✧ Automated Incident Report Center
+                </div>
+            </div>
+        </div>
+
+        <div class="section-title">Technical Expertise</div>
+        <div class="tech-skills-grid">
+            <div class="tech-category">
+                <h5>Development</h5>
+                <div class="tech-list">Visual Studio Code<br>Android Studio<br>C# / ASP.NET<br>Kotlin / XML</div>
+            </div>
+            <div class="tech-category">
+                <h5>Databases</h5>
+                <div class="tech-list">SQL Server / MySQL<br>ERD Design<br>Stored Procedures</div>
+            </div>
+            <div class="tech-category">
+                <h5>Design</h5>
+                <div class="tech-list">UI/UX Debugging<br>Web Design<br>Clean Coding</div>
+            </div>
+        </div>
+
+        <div style="margin-top:60px; border-top:1px solid rgba(212,175,55,0.1); padding-top:20px;">
+            <a href="https://www.linkedin.com/in/mika-gracia-bb75ba403" class="social-link" target="_blank">LinkedIn</a>
+            <a href="#" class="social-link">GitHub</a>
+            <a href="#" class="social-link">Instagram</a>
+        </div>
+    </div>
+
+    <script>
+        // Set Bio text
+        const bio = "I have a deep interest in website designing and development. My academic journey focuses on creating efficient, user-centered applications using modern technical frameworks. I specialize in bridging the gap between database management and clean, responsive interface design. Through my projects, I aim to solve real-world problems by delivering polished and functional digital solutions.";
+        document.getElementById('lblBio').innerText = bio;
+
+        // Dental Slider
+        let dIdx = 0; 
+        const dSlides = document.querySelectorAll('.dental-slide');
+        function showDental(n) {
+            dSlides[dIdx].classList.remove('active');
+            dIdx = (n + dSlides.length) % dSlides.length;
+            dSlides[dIdx].classList.add('active');
+        }
+        function nextDental() { showDental(dIdx + 1); }
+        function prevDental() { showDental(dIdx - 1); }
+
+        // Constructura Slider
+        let cIdx = 0;
+        const cSlides = document.querySelectorAll('.construct-slide');
+        function showConstruct(n) {
+            cSlides[cIdx].classList.remove('active');
+            cIdx = (n + cSlides.length) % cSlides.length;
+            cSlides[cIdx].classList.add('active');
+        }
+        function nextConstruct() { showConstruct(cIdx + 1); }
+        function prevConstruct() { showConstruct(cIdx - 1); }
+
+        // Auto-play interval
+        setInterval(nextDental, 5000);
+        setInterval(nextConstruct, 6500);
+    </script>
+</body>
+</html>
